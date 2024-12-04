@@ -86,18 +86,29 @@ header {
     background-color: #c00; /* Rojo al hover */
 }
 
+/* Curtain effect for content transitions */
 .content {
+    transform-origin: top;
+    transform: scaleY(1);
+    transition: transform 0.5s ease-in-out;
     padding-top: 150px; /* Ajusta este valor según la altura del header */
     padding-left: 20px;
     padding-right: 20px;
     flex-grow: 1;
     background-color: #444;
     border-radius: 8px;
-    transition: margin-left 0.3s;
+}
+
+.content.hidden {
+    transform: scaleY(0);
 }
 
 .content.p-4 {
     margin-top: 80px; /* Ajusta este valor según la altura del header */
+}
+
+.hidden {
+    opacity: 0;
 }
 
 .sidebar.active + .content {
@@ -150,6 +161,45 @@ header {
     }
 }
 
+@media (max-width: 768px) {
+    #toggleButton {
+        display: block; /* Mostrar el botón en pantallas pequeñas */
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background-color: #444;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-title {
+        text-align: left;
+    }
+
+    .sidebar {
+        display: none; /* Ocultar el sidebar por defecto en pantallas pequeñas */
+    }
+
+    .sidebar.active {
+        display: block; /* Mostrar el sidebar cuando esté activo */
+        position: fixed;
+        width: 200px;
+        height: 100%;
+        background-color: #222;
+        z-index: 999;
+        margin-top: 119px; /* Añadir margen superior */
+    }
+
+    .content.p-4 {
+        margin-top: 118px; /* Añadir margen superior */
+    }
+}
+
 /* Additional Styles for Dashboard */
 .card {
     background-color: #333;
@@ -192,4 +242,68 @@ header {
 
 .modal .btn:hover {
     background-color: #c00; /* Rojo al hover */
+}
+
+/* Cambiar el hover del dropdown a rojo */
+.dropdown-menu .dropdown-item:hover {
+    background-color: #c00;
+    color: #fff;
+}
+
+/* Cambiar detalles azules a rojos en la pestaña dashboard */
+.card-body h3.text-primary {
+    color: #c00 !important;
+}
+.card-header.bg-primary {
+    background-color: #c00 !important;
+}
+.btn-primary {
+    background-color: #c00;
+    border-color: #c00;
+}
+.btn-primary:hover {
+    background-color: #900;
+    border-color: #900;
+}
+
+/* Estilo de la tabla en chats individuales */
+.list-group-item,
+.list-group-item-action {
+    background-color: #222 !important;
+    color: #fff !important;
+    border-color: #c00 !important;
+    text-align: center;
+}
+.list-group-item:hover,
+.list-group-item-action:hover {
+    background-color: #333 !important;
+}
+
+h2 {
+    text-align: center;
+    color: #c00;
+}
+
+/* Centrar texto en la tabla de chats individuales */
+.table td,
+.table th {
+    text-align: center;
+}
+
+/* Estilo de la tabla de usuarios */
+.table-users {
+    background-color: #222 !important;
+    color: #fff !important;
+    border-color: #c00 !important;
+}
+.table-users th,
+.table-users td {
+    border-color: #c00 !important;
+}
+
+/* Asegurar que el texto en los elementos <a> de la lista de chats individuales esté centrado */
+.list-group-item,
+.list-group-item-action {
+    display: block;
+    text-align: center;
 }

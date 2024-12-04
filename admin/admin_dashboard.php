@@ -24,19 +24,9 @@
     <button id="toggleButton" class="btn btn-secondary d-md-none">
         ☰
     </button>
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" id="userButton" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fas fa-user"></i>&nbsp;
-            <?php
-            session_start();
-            $username = $_SESSION['username'] ?? 'Usuario';
-            echo htmlspecialchars($username);
-            ?>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-end bg-dark">
-            <li><a class="dropdown-item text-white" href="../logout.php">Cerrar Sesión</a></li>
-        </ul>
-    </div>
+    <button class="btn btn-secondary" id="logoutButton">
+        <i class="fas fa-sign-out-alt"></i>&nbsp;Cerrar Sesión
+    </button>
 </header>
 
     <div class="d-flex">
@@ -45,8 +35,8 @@
         <nav class="nav flex-column">
             <a class="nav-link active" href="admin_dashboard.php"><i class="fas fa-tachometer-alt"></i><span> Dashboard</span></a>
             <a class="nav-link" id="usersLink" href="#"><i class="fas fa-users"></i><span> Usuarios</span></a>
+            <a class="nav-link" id="individualChatsLink" href="#"><i class="fas fa-comments"></i><span> Chats Individuales</span></a>
             <a class="nav-link" id="tablesLink" href="#"><i class="fas fa-table"></i><span> Tablas</span></a>
-            <a class="nav-link" id="chartsLink" href="#"><i class="fas fa-chart-line"></i><span> Gráficos</span></a>
         </nav>
     </div>
 
@@ -100,6 +90,28 @@
                     <div class="card-header bg-primary text-white">Tendencia de Usuarios</div>
                     <div class="card-body">
                         <canvas id="userTrendChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 mt-4">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">Mensajes</div>
+                    <div class="card-body">
+                        <form id="messageForm">
+                            <div class="mb-3">
+                                <label for="messageContent" class="form-label">Escribir mensaje</label>
+                                <textarea class="form-control" id="messageContent" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                        </form>
+                        <hr>
+                        <h6>Mensajes Recientes</h6>
+                        <ul id="messageList" class="list-group">
+                            <!-- Mensajes recientes se mostrarán aquí -->
+                        </ul>
                     </div>
                 </div>
             </div>
